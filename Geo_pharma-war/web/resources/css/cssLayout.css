@@ -1,0 +1,87 @@
+
+.background {
+    background-color: #036fab;
+}
+.ui-menu-list {
+    position: static;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-end;
+}
+.ui-menubar {
+    width: auto;
+    background: transparent;
+    border: none;
+}
+#top {
+    position: relative;
+    background-image: url(../images/preparateur-en-pharmacie.jpg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 25vw;
+}
+#menu {
+    color: white;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 10px;
+}
+.cover {
+    height: 100%;
+    display: grid;
+    background-color: #11359957;
+}
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+}
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    margin-top: 5vw;
+    display: grid;
+    justify-content: center;
+    gap: 5vw;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+

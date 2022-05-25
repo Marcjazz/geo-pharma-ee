@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="../dashboard.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <p:dataTable value="#{pharmacieController.loadPharmacies()}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Idpharmacie"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idpharmacie}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Description"/>
+                        </f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Longitude"/>
+                        </f:facet>
+                        <h:outputText value="#{item.longitude}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Latitude"/>
+                        </f:facet>
+                        <h:outputText value="#{item.latitude}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Idutilisateur"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idutilisateur}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ImageRef"/>
+                        </f:facet>
+                        <h:outputText value="#{item.imageRef}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Modifier"/>
+                        </f:facet>
+                        <p:commandButton icon="ui-icon-pencil" value="Modifier"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Supprimer"/>
+                        </f:facet>
+                        <p:commandButton icon="ui-icon-plusthick" value="Supprimer"/>
+                    </p:column>
+                </p:dataTable>
+                <p:separator/>
+                
+                <center>
+                    <h:panelGrid columns="1">
+                        <p:commandButton immediate="true" value="Ajouter" actionListener="#" oncomplete="PF('affiche_pharmacie').show()" />
+                    </h:panelGrid>
+                </center>
+
+                <p:dialog id="dialog_pharma" modal="true" dynamic="true" class="dialog_pharma" widgetVar="affiche_pharmacie" closable="false" showHeader="true" showEffect="fade">
+                    <f:facet name="header">
+                        <h:outputText style="font-size: 11pt;" value="Ajouter un utilisateur" />
+                    </f:facet>
+                    <p:panel id="pan_pharma" style="text-align: justify;">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Idpharmacie:" for="idpharmacie" />
+                            <p:inputText id="idpharmacie" value="#{pharmacieController.pharmacie.idpharmacie}" title="Idpharmacie" required="true" requiredMessage="The Idpharmacie field is required."/>
+
+                            <p:outputLabel value="Nom:" for="nom" />
+                            <p:inputText id="nom" value="#{pharmacieController.pharmacie.nom}" title="Nom" />
+
+                            <p:outputLabel value="Description:" for="description" />
+                            <p:inputText id="description" value="#{pharmacieController.pharmacie.description}" title="Description" />
+
+                            <p:outputLabel value="Longitude:" for="longitude" />
+                            <p:inputText id="longitude" value="#{pharmacieController.pharmacie.longitude}" title="Longitude" required="true" requiredMessage="The Longitude field is required."/>
+
+                            <p:outputLabel value="Latitude:" for="latitude" />
+                            <p:inputText id="latitude" value="#{pharmacieController.pharmacie.latitude}" title="Latitude" required="true" requiredMessage="The Latitude field is required."/>
+
+                            <p:outputLabel value="Idutilisateur:" for="idutilisateur" />
+                            <p:selectOneMenu id="idutilisateur" value="#{pharmacieController.pharmacie.idutilisateur}" required="true" requiredMessage="The Idutilisateur field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{utilisateurController.utilisateurs}" var="utilisateur"
+                                               itemLabel="#{utilisateur.nom} #{utilisateur.prenom}" itemValue="#{utilisateur.idutilisateur}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="ImageRef:" for="imageRef" />
+                            <p:inputText id="imageRef" value="#{pharmacieController.pharmacie.imageRef}" title="ImageRef" required="true" requiredMessage="The ImageRef field is required."/>
+                        </p:panelGrid>
+
+
+                        <f:facet name="footer">
+                            <h:panelGrid style="width: 100%; text-align: center;" columns="2">
+                                <p:commandButton process="pan_pharma" style="font-size: 10pt; font-weight: bold;" value="Enregistrer" action="#"/>
+                                <p:commandButton style="font-size: 10pt; font-weight: bold;" value="Annuler" immediate="true" oncomplete="PF('affiche_pharmacie').hide()"/>
+                            </h:panelGrid>
+                        </f:facet>
+                    </p:panel>
+                </p:dialog>
+            </h:form>
+        </f:view>
+
+    </ui:define>
+</ui:composition>
